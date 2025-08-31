@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡單點牛肉麵 - 點餐系統</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .options-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .option-card {
+            background: white;
+            border: 3px solid #ecf0f1;
+            border-radius: 15px;
+            padding: 40px 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            min-width: 200px;
+            flex: 1;
+            max-width: 250px;
+        }
+
+        .option-card:hover {
+            transform: translateY(-8px);
+            border-color: #3498db;
+            box-shadow: 0 15px 35px rgba(52, 152, 219, 0.2);
+        }
+
+        .option-card:active {
+            transform: translateY(-4px);
+            background: #f8f9fa;
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            filter: grayscale(30%);
+            transition: filter 0.3s ease;
+        }
+
+        .option-card:hover .option-icon {
+            filter: none;
+        }
+
+        .option-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .option-description {
+            font-size: 0.9rem;
+            color: #95a5a6;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 30px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .options-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .option-link {
+                min-width: auto;
+                max-width: none;
+            }
+            
+            .option-card {
+                padding: 30px 40px;
+            }
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            font-size: 0.8rem;
+            color: #bdc3c7;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">簡單點牛肉麵</h1>
+        <p class="subtitle">請選擇用餐方式</p>
+        
+        <div class="options-container">
+            <div class="option-card" onclick="selectOption('dine-in', event)">
+                <div class="option-icon">🍽️</div>
+                <div class="option-text">內用</div>
+                <div class="option-description">店內享用</div>
+            </div>
+            
+            <div class="option-card" onclick="selectOption('takeout', event)">
+                <div class="option-icon">🥡</div>
+                <div class="option-text">外帶</div>
+                <div class="option-description">打包帶走</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        點選您偏好的用餐方式開始點餐
+    </div>
+
+    <script>
+        function selectOption(type, event) {
+            // 添加點擊效果
+            const card = event.currentTarget;
+            card.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                card.style.transform = '';
+                
+                // 導向對應頁面
+                if (type === 'dine-in') {
+                    window.location.href = '內用預約.html?type=dine-in';
+                } else if (type === 'takeout') {
+                    window.location.href = '外帶.html?type=takeout';
+                }
+            }, 150);
+        }
+
+        // 添加鍵盤快捷鍵支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '1') {
+                window.location.href = 'https://two0250811-1.onrender.com/?type=dine-in';
+            } else if (e.key === '2') {
+                window.location.href = 'https://two0250826-takeoutweb.onrender.com/?type=takeout';
+            }
+        });
+    </script>
+</body>
+</html>
